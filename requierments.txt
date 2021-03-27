@@ -5,4 +5,3 @@ psycopg2==2.8.6
 pytz==2021.1
 setuptools==54.1.2
 sqlparse==0.4.1
-django-ssh-deployer==0.6.2
