@@ -206,7 +206,7 @@ class OrderComplete(APIView):
 
     def post(self, request):
         data = JSONParser().parse(request)
-        if not all(map(bool, [data["courier_id"], data["order_id"], data["complete_time"]])):
+        if not all(map(bool, [data.get("courier_id", False), data.get("order_id", False), data.get("complete_time", False)])):
             return HttpResponse(status=400)
         try:
             order = Order.objects.get(pk=data["order_id"])
