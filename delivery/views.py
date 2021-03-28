@@ -70,7 +70,9 @@ class CourierDetail(APIView):
         serializer = CourierSerializer(courier, data=data, partial=True)
         if serializer.is_valid():
             serializer.save()
+            had_orders = False
             for order in courier.order_set.all().filter(complete_time=None):
+                had_orders = True
                 is_intersect = False
                 for d1 in order.delivery_hours:
                     for d2 in courier.working_hours:
@@ -79,7 +81,7 @@ class CourierDetail(APIView):
                     order.courier = None
                     order.save()
             orders = courier.order_set.all().filter(complete_time=None)
-            if not orders:
+            if not orders and had_orders:
                 Courier.update_courier_earnings(courier)
             return JsonResponse(serializer.data, status=200)
         return JsonResponse(serializer.errors, status=400)
