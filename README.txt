@@ -1,6 +1,6 @@
 Сервис реализован на Django с использованием СУБД PostgreSQL
 Для деплоя проекта на сервер требуется:
-Клонировать репозиторий $ sudo git clone
+Клонировать репозиторий $ sudo git clone https://github.com/qodize/yandex_backend.git
 Создать виртуальное окружение в корне репозитория $ sudo python3 -m venv venv
 Активировать виртуальное окружение $ sudo source venv/bin/activate
 Установить все внешние библиотеки $ pip install -r requirements.txt 
